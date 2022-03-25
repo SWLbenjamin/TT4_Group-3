@@ -37,11 +37,11 @@ class PayOutstanding extends React.Component {
 
     render() {
         return (
-            <div className="payoutstanding">
-                Pay Outstanding Loan
+            <div className="outstanding">
+                <h1>Pay Outstanding Loan</h1>
 
-                <label>
-                    Pick your outstanding loan:
+                <label >
+                    <p>Outstanding loan:</p>
                     <select value = {this.state.outstanding} >
                         <option value=""></option>
                     </select>
