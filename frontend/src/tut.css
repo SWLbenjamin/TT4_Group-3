@@ -33,7 +33,7 @@ body, html, #root, .app, .container {
     max-width: 600px;
     padding-left: 20px;
     padding-right: 20px;
-    background-color: #292929;
+    background-color: white;
    }
   
   .inputField {
