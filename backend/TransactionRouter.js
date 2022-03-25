@@ -6,7 +6,7 @@ class TransactionRouter {
         this.getBalance(app, db);
         this.getLoan(app, db);
         this.createLoan(app, db);
-        // this.updatePaymentAndLoan(app, db);
+        this.updatePaymentAndLoan(app, db);
     }
 
     getBalance(app, db) {
@@ -15,7 +15,7 @@ class TransactionRouter {
             db.query("SELECT balance FROM customer WHERE CustomerId =" + customerID, function (err, result, fields) {
                 if (err) throw err;
                 console.log(result[0].balance);
-                res.json({success:true,balance:result[0].balance);
+                res.json({success:true,balance:result[0].balance});
             });
         }
         );
@@ -26,9 +26,9 @@ class TransactionRouter {
     getLoan(app, db) {
         app.get('/getLoan', (req, res) => {
             let customerID = req.body.id;
-            db.query("SELECT SUM(loan_amount) FROM loan WHERE LoanId IN (SELECT LoanId FROM customerloan WHERE CustomerId=" + customerID + ")", function (err, result, fields) {
+            db.query("SELECT SUM(loan_amount) as sum_loan FROM loan WHERE LoanId IN (SELECT LoanId FROM customerloan WHERE CustomerId=" + customerID + ")", function (err, result, fields) {
                 if (err) throw err;
-                res.json({success:true,loan_amount:result[0].'SUM(loan_amount)');
+                res.json({success:true,loan_amount:result[0].sum_loan});
             });
         }
         );
@@ -57,10 +57,11 @@ class TransactionRouter {
         app.post('/updatePaymentAndLoan', (req, res) => {
             let payment_amount = req.body.payment;
             let loanId = req.body.id;
+            const today = new Date().toLocaleDateString('en-us', {year:"numeric", month:"numeric", day:"numeric"});
             db.query(`UPDATE loan SET loan_amount = loan_amount - ('${payment_amount}') WHERE loanId = ('${loanId}')`, function (err, results) {
                 if (err) throw error;
             });
-            db.query(`INSERT INTO payment (LoanId, payment_date, payment_amount) VALUES ('${loanId}','2022-03-25','${data.payment_amount}')`, function (err, results) {
+            db.query(`INSERT INTO payment (LoanId, payment_date, payment_amount) VALUES ('${loanId}','${today}','${payment_amount}')`, function (err, results) {
                 if (err) throw error;
                 res.send('Successfully paid!');
             });
