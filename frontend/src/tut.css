@@ -61,3 +61,42 @@ body, html, #root, .app, .container {
     margin-top: 12px;
     margin-bottom: 12px;
 }
+
+
+.ApplyOutstanding{
+  position: fixed;
+
+  padding: 10px;
+  margin: 0;
+
+  top: 50%;
+  bottom: 0;
+
+  width: 94%;
+  background: white;
+  border: 5px;
+
+  display: flex;
+
+  color: black;
+
+}
+
+
+.applyform{
+  flex: 1;
+  margin: 10px;
+  border: 10px;
+  padding: 2%;
+  background: rgb(184, 183, 183);
+  border-radius: 10px;
+}
+
+.outstanding{
+  flex: 1;
+  margin: 10px;
+  border: 10px;
+  padding: 2%;
+  background: rgb(184, 183, 183);
+  border-radius: 10px;
+}
