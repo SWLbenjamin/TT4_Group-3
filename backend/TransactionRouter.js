@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 class TransactionRouter {
 
@@ -15,11 +15,15 @@ class TransactionRouter {
           db.query("SELECT balance FROM customers WHERE CustomerId =" + customerID, function (err, result, fields) {
             if (err) throw err;
             res.send(result);
-        })
-      }
+        });
+      }}
 
     getLoan(app, db) {
-        app.get('/', (req, res) => {}   )
+        app.get('/getLoan', (req, res) => {
+          db.query("SELECT SUM(loan_amount) FROM loan WHERE LoanId IN (SELECT LoanId FROM customerloan WHERE CustomerId=" + customerID +")" , function (err, result, fields) {
+            if (err) throw err;
+            res.send(result);
+        })
       }
 
     createLoan(app, db) {
