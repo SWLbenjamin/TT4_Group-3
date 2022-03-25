@@ -6,7 +6,30 @@ class Router {
         this.login(app, db);
         this.logout(app, db);
         this.isLoggedIn(app, db);
+        this.register(app,db);
     }
+
+    register(app,db){
+      app.post('/register', (req, res) => {
+
+          let username = req.body.username;
+          let password = req.body.password;
+
+          username = username.toLowerCase();
+          db.query(`SELECT * FROM user WHERE username = ${username}`, function (err,results) {
+            if (err) throw err;
+            if (results) {
+              res.send('user exists');
+            }
+            if (!results) {
+              const hashedPassword = bcrypt.hash(password,10);
+              db.query(`INSERT INTO user (username,password) VALUES (${username},${hashedPassword})`, function (err,results) {
+                if (err) throw err;
+                res.send('successfully registered');
+              });
+            }
+          });
+    });
 
     login(app, db) {
         app.post('/login', (req, res) => {
@@ -100,7 +123,7 @@ class Router {
             if (req.session.userID) {
                 let cols = [req.session.userID];
                 db.query('SELECT * FROM user WHERE id = ? LIMIT 1', cols, (err, data, fields) => {
-                    
+
                     if (data && data.length === 1) {
                         console.log("data= "+data);
                         console.log("fields= "+fields);
@@ -120,7 +143,7 @@ class Router {
                         return false;
                     }
 
-                });               
+                });
                 return;
 
             }

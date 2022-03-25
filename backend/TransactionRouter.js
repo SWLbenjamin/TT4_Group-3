@@ -35,7 +35,7 @@ class TransactionRouter {
 
     // createLoan(app, db) {
     //     app.post('/', (req, res) => {
-    //       data = {loan_amount = req.body.loan, customerId = req.body.id};
+    //       data = {loan_amount : req.body.loan, customerId : req.body.id};
     //       let loanID = 0;
     //       db.query(`INSERT INTO loan (loan_amount) VALUES ('${data.loan_amount}')`, function (err,results){
     //         if (err) throw error;
