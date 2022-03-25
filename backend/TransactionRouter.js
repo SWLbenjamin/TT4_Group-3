@@ -14,6 +14,7 @@ class TransactionRouter {
             let customerID = req.body.id;
             db.query("SELECT balance FROM customer WHERE CustomerId =" + customerID, function (err, result, fields) {
                 if (err) throw err;
+                console.log(result[0].balance);
                 res.send(result);
             });
         }
@@ -40,27 +41,15 @@ class TransactionRouter {
             let customerId = req.body.id;
 
             db.query(`INSERT INTO loan (loan_amount) VALUES ('${loan_amount}');SELECT LAST_INSERT_ID() as ID`, function (err, results) {
-                console.log(results[1]);
                 let resultString = JSON.stringify(results[1]);
                 let resJSON = JSON.parse(resultString);
-                console.log(resJSON);
                 let loanID = resJSON[0].ID;
-                res.send('Successfully added transaction into loan!');
                 db.query(`INSERT INTO customerloan (CustomerId, LoanId) VALUES ('${customerId}','${loanID}')`, function (err, results) {
-                    
                     if (err) throw err;
                     res.send('Successfully added loan into customerloan!');
                 });
                 if (err) throw err;
             });
-            // db.query('', function (err, results) {
-            //     if (err) throw error;
-
-            // });
-            // db.query(`INSERT INTO customerloan (CustomerId, LoanId) VALUES ('${customerId}','${loanID}')`, function (err, results) {
-            //     if (err) throw err;
-            //     res.send('Successfully added loan into customerloan!');
-            // });
         })
     }
 
