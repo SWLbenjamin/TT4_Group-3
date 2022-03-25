@@ -1,0 +1,107 @@
+[
+{"type":"header","version":"5.1.1","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"tt4_grp3"},
+{"type":"table","name":"customer","database":"tt4_grp3","data":
+[
+{"CustomerId":"1","customer_name":"Farrah Dobbie","customer_phone":"3688961901","customer_address":"49862 Kingsford Junction","balance":"69687.54"},
+{"CustomerId":"2","customer_name":"Malcolm Orbell","customer_phone":"8867727382","customer_address":"385 Lawn Terrace","balance":"55592.51"},
+{"CustomerId":"3","customer_name":"Filippa Bucknill","customer_phone":"6677805329","customer_address":"1898 Michigan Road","balance":"53826.01"},
+{"CustomerId":"4","customer_name":"Dido Vanezis","customer_phone":"2887691797","customer_address":"57689 Myrtle Park","balance":"30581.83"},
+{"CustomerId":"5","customer_name":"Annelise Aspland","customer_phone":"2096293966","customer_address":"3922 Cherokee Place","balance":"87026.91"},
+{"CustomerId":"6","customer_name":"Herminia Newby","customer_phone":"8111478402","customer_address":"19 Chive Center","balance":"5414.47"},
+{"CustomerId":"7","customer_name":"Lind Hanley","customer_phone":"7504959822","customer_address":"7534 Village Green Center","balance":"25921.26"},
+{"CustomerId":"8","customer_name":"Mimi Gilhooley","customer_phone":"6594140488","customer_address":"16033 Pond Avenue","balance":"62834.94"},
+{"CustomerId":"9","customer_name":"Ileana Parkes","customer_phone":"1281389203","customer_address":"095 Warner Hill","balance":"76939.31"},
+{"CustomerId":"10","customer_name":"Larissa Yeldham","customer_phone":"2812360584","customer_address":"220 Shopko Parkway","balance":"15790.59"},
+{"CustomerId":"11","customer_name":"newUser","customer_phone":"8392013","customer_address":"adddd","balance":"0.00"}
+]
+}
+,{"type":"table","name":"customerloan","database":"tt4_grp3","data":
+[
+{"CustomerLoanId":"1","CustomerId":"7","LoanId":"6"},
+{"CustomerLoanId":"2","CustomerId":"8","LoanId":"8"},
+{"CustomerLoanId":"3","CustomerId":"8","LoanId":"7"},
+{"CustomerLoanId":"4","CustomerId":"8","LoanId":"1"},
+{"CustomerLoanId":"5","CustomerId":"8","LoanId":"10"},
+{"CustomerLoanId":"6","CustomerId":"7","LoanId":"9"},
+{"CustomerLoanId":"7","CustomerId":"5","LoanId":"3"},
+{"CustomerLoanId":"8","CustomerId":"2","LoanId":"2"},
+{"CustomerLoanId":"9","CustomerId":"4","LoanId":"4"},
+{"CustomerLoanId":"10","CustomerId":"4","LoanId":"5"},
+{"CustomerLoanId":"11","CustomerId":"1","LoanId":"13"},
+{"CustomerLoanId":"17","CustomerId":"1","LoanId":"29"},
+{"CustomerLoanId":"18","CustomerId":"1","LoanId":"30"}
+]
+}
+,{"type":"table","name":"loan","database":"tt4_grp3","data":
+[
+{"LoanId":"1","loan_amount":"135532.99"},
+{"LoanId":"2","loan_amount":"34367.53"},
+{"LoanId":"3","loan_amount":"45086.74"},
+{"LoanId":"4","loan_amount":"140123.37"},
+{"LoanId":"5","loan_amount":"57800.21"},
+{"LoanId":"6","loan_amount":"13165.14"},
+{"LoanId":"7","loan_amount":"82062.24"},
+{"LoanId":"8","loan_amount":"12416.32"},
+{"LoanId":"9","loan_amount":"17250.83"},
+{"LoanId":"10","loan_amount":"46431.85"},
+{"LoanId":"13","loan_amount":"12345.00"},
+{"LoanId":"14","loan_amount":"4000.00"},
+{"LoanId":"15","loan_amount":"4000.00"},
+{"LoanId":"16","loan_amount":"4000.00"},
+{"LoanId":"17","loan_amount":"4000.00"},
+{"LoanId":"18","loan_amount":"4000.00"},
+{"LoanId":"19","loan_amount":"4000.00"},
+{"LoanId":"20","loan_amount":"3917.00"},
+{"LoanId":"21","loan_amount":"4000.00"},
+{"LoanId":"22","loan_amount":"4000.00"},
+{"LoanId":"23","loan_amount":"4000.00"},
+{"LoanId":"24","loan_amount":"4000.00"},
+{"LoanId":"25","loan_amount":"4000.00"},
+{"LoanId":"26","loan_amount":"4000.00"},
+{"LoanId":"27","loan_amount":"4000.00"},
+{"LoanId":"28","loan_amount":"4000.00"},
+{"LoanId":"29","loan_amount":"4000.00"},
+{"LoanId":"30","loan_amount":"4000.00"}
+]
+}
+,{"type":"table","name":"payment","database":"tt4_grp3","data":
+[
+{"PaymentId":"1","LoanId":"1","payment_date":"2022-02-20","payment_amount":"35532.99"},
+{"PaymentId":"2","LoanId":"6","payment_date":"2022-03-19","payment_amount":"7818.63"},
+{"PaymentId":"3","LoanId":"4","payment_date":"2022-01-12","payment_amount":"74562.54"},
+{"PaymentId":"4","LoanId":"4","payment_date":"2022-03-21","payment_amount":"51364.06"},
+{"PaymentId":"5","LoanId":"3","payment_date":"2022-01-17","payment_amount":"16363.67"},
+{"PaymentId":"6","LoanId":"1","payment_date":"2022-01-03","payment_amount":"26544.58"},
+{"PaymentId":"7","LoanId":"1","payment_date":"2022-02-27","payment_amount":"30534.71"},
+{"PaymentId":"8","LoanId":"9","payment_date":"2022-02-27","payment_amount":"17250.83"},
+{"PaymentId":"9","LoanId":"2","payment_date":"2022-02-19","payment_amount":"34367.53"},
+{"PaymentId":"10","LoanId":"7","payment_date":"2022-02-08","payment_amount":"31003.82"},
+{"PaymentId":"11","LoanId":"20","payment_date":"2022-03-25","payment_amount":"20.00"},
+{"PaymentId":"12","LoanId":"20","payment_date":"2022-03-25","payment_amount":"1.00"},
+{"PaymentId":"13","LoanId":"20","payment_date":"2022-03-25","payment_amount":"1.00"}
+]
+}
+,{"type":"table","name":"sessions","database":"tt4_grp3","data":
+[
+
+]
+}
+,{"type":"table","name":"user","database":"tt4_grp3","data":
+[
+{"id":"1","username":"fDobbie","password":"$2b$09$X7Pa\/dNNoMaH4E\/sw1y6O.A7\/o4AACNkxIRFUGdwFFgl..4DKgSFS"},
+{"id":"2","username":"mOrbell","password":"$2b$09$pbr9wO6wFSWb7.NSTLoROeMhe9dC\/xVuXT54cpfTW8OhMTBgylQfK"},
+{"id":"3","username":"fBucknill","password":"$2b$09$sGOZSH4bVDh20HsNzvB51e13.924ZD8vnOAcQSB34N6zNMKsL8Go."},
+{"id":"4","username":"dVanezis","password":"$2b$09$05ruNbTZfkKkpIuZ0XhB8u52eoA3wKSQhN8ZPUcqTjCBTFOqB.YTa"},
+{"id":"5","username":"aAspland","password":"$2b$09$MTj5Nvg4oZW.VRl711H6z.Mp3LGWjKDUXI8rs\/RqgmvrSQt2wQ1Py"},
+{"id":"6","username":"hNewby","password":"$2b$09$\/JcXSlKcaEFPqePSaQoUS.z.zRN6iv9rFBrjxBTq.O3UIAeZk14fO"},
+{"id":"7","username":"lHanley","password":"$2b$09$K2rQhcXzcFKmBET4cHUTFOuh.GlvD\/zpzFl.i4LPFdm\/YTu072GxK"},
+{"id":"8","username":"mGilhooley","password":"$2b$09$VM5A2lBgno3hLk8BKrBljupWMU1CegPENpYILdguuwIlAVYer8liq"},
+{"id":"9","username":"iParkes","password":"$2b$09$lipb8QKUlojFlmtXMMKJkubz7cA\/90Zmx7tiwErrfZg.5zUvMJ0Kq"},
+{"id":"10","username":"lYeldham","password":"$2b$09$WY.TiOrf3lKUKRl48iDq.Ou2cKHsTtzjwFhin\/VMQLTWWEeRNbNMO"},
+{"id":"11","username":"newuser","password":"$2b$09$DIAz.rluq4.O46b168bNi.7JeIVbxUtbZES3M.4NzOICBvpJMGuVu"},
+{"id":"12","username":"newuser","password":"$2b$09$cR8pdztsOYAaUYYCVsCR5.R9iP7nDQ\/PJGKyR.2zLuMN46T7dLCp6"},
+{"id":"13","username":"newuser","password":"$2b$09$3emfhKma0rxcc4gZUOk87u6f7FvShxxXvZeMahr5ClfI.5MjRAWZC"}
+]
+}
+]
