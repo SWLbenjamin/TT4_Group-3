@@ -1,6 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+import './tut.css'
 import React, { Component } from 'react';
+import ApplyForm from './components/home/applyform';
+import PayOutstanding from './components/home/payoutstanding';
 import axios from 'axios';
 
 class App extends Component {
@@ -28,47 +31,66 @@ class App extends Component {
 
   render() {
     const { posts } = this.state;
+
+
     return (
+
+
         <div className="container">
-            <div class='row'>
-                <p>Dear xxxxx, you have a balance of $200,000</p>
-            </div>
-            <div className='row'>
-                <div className='col-sm'>
-                    <ul>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                    </ul>
+            <div>
+                <div class='row'>
+                    <p>Dear xxxxx, you have a balance of $200,000</p>
                 </div>
-                <div className='col-sm'>
-                    <ul>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                    </ul>
-                    {/* {posts.map((post) => (
-                    <ul>
-                        <li>#{post.id} {post.title}</li>
-                    </ul>
-                    // <div className="card" key={post.id}>
-                    //     <div className="card-header">
-                    //     #{post.id} {post.title}
-                    //     </div>
-                    //     <div className="card-body">
-                    //     <p className="card-text">{post.body}</p>
-                    //     </div>
-                    // </div>
-                    ))} */}
+                <div className='row'>
+                    <div className='col-sm'>
+                        <ul>
+                            <li>1</li>
+                            <li>1</li>
+                            <li>1</li>
+                            <li>1</li>
+                            <li>1</li>
+                        </ul>
+                    </div>
+                    <div className='col-sm'>
+                        <ul>
+                            <li>1</li>
+                            <li>1</li>
+                            <li>1</li>
+                            <li>1</li>
+                            <li>1</li>
+                        </ul>
+                        {/* {posts.map((post) => (
+                        <ul>
+                            <li>#{post.id} {post.title}</li>
+                        </ul>
+                        // <div className="card" key={post.id}>
+                        //     <div className="card-header">
+                        //     #{post.id} {post.title}
+                        //     </div>
+                        //     <div className="card-body">
+                        //     <p className="card-text">{post.body}</p>
+                        //     </div>
+                        // </div>
+                        ))} */}
+                    </div>
+                </div>
+                <div class='row'>
+                    <p>bottom</p>
                 </div>
             </div>
-            <div class='row'>
-                <p>bottom</p>
+            
+            <hr></hr>
+
+            <div class="ApplyOutstanding">
+                <div class = "applyform">
+                    <ApplyForm/> 
+                </div>
+                <div class = "outstanding">
+                    <PayOutstanding/>   
+                </div>
             </div>
+
+            
         
         </div>
     );
