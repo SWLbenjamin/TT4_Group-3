@@ -66,32 +66,24 @@ class App extends Component {
 
     return (
         <div className="app" style={{height:"auto"}}>
-            <div class='container'>
-                <div class='row'>
-                    <h3>Dear, xxxxxx, you have a balance of $200,000.</h3>
-                </div>
+            <header class='top'>
+                <h3>Dear, xxxxxx, you have a balance of $200,000.</h3>
+            </header>
+            
+            <div class='container2'>
+                
                 <div class="row">
-                    <div class="col border">
+                    <div class="col border" id="current-loan">
                         <p>Current Loan(s)</p>
                         <JsonDataDisplay/>  
                     </div>
-                    <div class="col border" style={{width:"500px"}}>
+                    <div class="col border" style={{width:"500px"}} id="history">
                         <p>Loan History</p>
                         <JsonDataDisplayPayment/>  
                     </div>
                 </div>
                 <div class='row'>
                     <p>Forms</p>
-                </div>
-                <div class="row">
-                    <div class="col border">
-                        <p>Current Loan(s)</p>
-                        <JsonDataDisplay/>  
-                    </div>
-                    <div class="col border" style={{width:"500px"}}>
-                        <p>Loan History</p>
-                        <JsonDataDisplayPayment/>  
-                    </div>
                 </div>
                 <div class='row'>
                     {loanHistory.map((currentLoan) => (
