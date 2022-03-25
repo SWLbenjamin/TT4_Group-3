@@ -5,6 +5,7 @@ const mysql         = require('mysql');
 const session       = require('express-session');
 const MySQLStore    = require('express-mysql-session')(session);
 const Router        = require('./Router');
+const TransactionRouter = require('./TransactionRouter');
 
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.json());
@@ -14,7 +15,8 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'swlbenjamin',
     password: '190398',
-    database: 'login_db'
+    database: 'tt4_grp3',
+    multipleStatements: true
 });
 
 db.connect(function(err) {
@@ -44,6 +46,7 @@ app.use(session({
 }));
 
 new Router(app, db);
+new TransactionRouter(app, db);
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'build', 'intel.html'));
