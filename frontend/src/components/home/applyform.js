@@ -38,7 +38,7 @@ class ApplyForm extends React.Component {
     render() {
         return (
             <div className="applyform">
-                Apply Loan Here
+                <h1>Apply Loan Here</h1>
                 <InputField
                     type='number'
                     placeholder='Loan Amount'
