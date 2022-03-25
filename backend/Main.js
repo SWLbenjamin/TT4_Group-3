@@ -15,7 +15,8 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'swlbenjamin',
     password: '190398',
-    database: 'tt4_grp3'
+    database: 'tt4_grp3',
+    multipleStatements: true
 });
 
 db.connect(function(err) {
