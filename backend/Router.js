@@ -6,30 +6,38 @@ class Router {
         this.login(app, db);
         this.logout(app, db);
         this.isLoggedIn(app, db);
-        this.register(app,db);
+        this.register(app, db);
     }
 
-    register(app,db){
-      app.post('/register', (req, res) => {
+    register(app, db) {
+        app.post('/register', (req, res) => {
 
-          let username = req.body.username;
-          let password = req.body.password;
+            let username = req.body.username;
+            let password = req.body.password;
+            let phoneNum = req.body.phoneNumber;
+            let name = req.body.name;
+            let address = req.body.address;
 
-          username = username.toLowerCase();
-          db.query(`SELECT * FROM user WHERE username = ${username}`, function (err,results) {
-            if (err) throw err;
-            if (results) {
-              res.send('user exists');
-            }
-            if (!results) {
-              const hashedPassword = bcrypt.hash(password,10);
-              db.query(`INSERT INTO user (username,password) VALUES (${username},${hashedPassword})`, function (err,results) {
+            username = username.toLowerCase();
+            db.query(`SELECT username FROM user WHERE username = '${username}'`, function (err, results) {
                 if (err) throw err;
-                res.send('successfully registered');
-              });
-            }
-          });
-    });
+                // if (results) {
+                //     res.send('user exists');
+                // }
+                if (results) {
+                    const hashedPassword = bcrypt.hashSync(password, 9);
+                    db.query(`INSERT INTO user (username,password) VALUES ('${username}','${hashedPassword}')`, function (err, results) {
+                        if (err) throw err;
+                        // res.send('successfully registered');
+                    });
+                    db.query(`INSERT INTO customer (customer_name, customer_phone, customer_address, balance) VALUES ('${name}','${phoneNum}','${address}', '0')`, function (err, results){
+                        if (err) throw err;
+                        res.send('successfully registered')
+                    });
+                }
+            });
+        });
+    }
 
     login(app, db) {
         app.post('/login', (req, res) => {
@@ -125,8 +133,8 @@ class Router {
                 db.query('SELECT * FROM user WHERE id = ? LIMIT 1', cols, (err, data, fields) => {
 
                     if (data && data.length === 1) {
-                        console.log("data= "+data);
-                        console.log("fields= "+fields);
+                        console.log("data= " + data);
+                        console.log("fields= " + fields);
 
                         res.json({
                             success: true,
