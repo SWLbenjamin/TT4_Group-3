@@ -1,144 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { observer } from 'mobx-react';
-import { BrowserRouter as Router, Routes, Route, Redirect } from "react-router-dom";
-import UserStore from "./stores/UserStore";
-import LoginForm from "./components/login/LoginForm";
-import SubmitButton from "./components/login/SubmitButton";
-import { LoginScreen } from './screens/LoginScreen';
-import Home from './screens/HomeScreen';
-import './tut.css';
+import {useState, useEffect} from 'react'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
+import { NavLink, Routes } from "react-router-dom";
+import Main from './Main';
+import SignUpPage from './components/login/SignUpPage';
+import Home from './Home';
 
-class App extends React.Component {
-
-    async componentDidUpdate() {
-
-        try {
-            let res = await fetch('/isLoggedIn', {
-                method: 'post',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json'
-                }
-            });
-
-            let result = await res.json();
-
-            if (result && result.success) {
-                UserStore.loading = false;
-                UserStore.isLoggedIn = true;
-                UserStore.username = result.username;
-            }
-
-            else {
-                UserStore.loading = false;
-                UserStore.isLoggedIn = false;
-            }
-
-        }
+const App = () => {
 
 
-        catch (e) {
-            UserStore.loading = false;
-            UserStore.isLoggedIn = false;
-        }
 
-    }
+  return (
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<Main/>}/>
+        <Route path="/SignUpPage" element={<SignUpPage/>}/>
+        <Route path="/Home" element={<Home/>}/>
 
-    async componentDidMount() {
+        </Routes>
 
-        try {
-            let res = await fetch('/isLoggedIn', {
-                method: 'post',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json'
-                }
-            });
-
-            let result = await res.json();
-
-            if (result && result.success) {
-                UserStore.loading = false;
-                UserStore.isLoggedIn = true;
-                UserStore.username = result.username;
-            }
-
-            else {
-                UserStore.loading = false;
-                UserStore.isLoggedIn = false;
-            }
-
-        }
-
-
-        catch (e) {
-            UserStore.loading = false;
-            UserStore.isLoggedIn = false;
-        }
-    }
-
-    async doLogout(accountKey) {
-
-        try {
-            let res = await fetch('/logout', {
-                method: 'post',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json'
-                }
-            });
-
-            let result = await res.json();
-
-            if (result && result.success) {
-                UserStore.isLoggedIn = false;
-                UserStore.username = '';
-            }
-
-        }
-
-        catch (e) {
-            console.log(e);
-        }
-    }
-
-    render() {
-        
-        if (UserStore.loading) {
-            return (
-                <div className='container'>
-                    Loading, please wait..
-                </div>
-            )
-        }
-
-        else {
-
-            if (UserStore.isLoggedIn) {
-                return (
-                    <div className='container'>
-                        <Home 
-                            store = {UserStore}
-                            isLoggedIn = {UserStore.isLoggedIn}
-                            username = {UserStore.username}
-                            logOut = {this.doLogout}
-                        />
-
-                    </div>
-                )
-            }
-
-            return (
-                <div className="app">
-                    <div className='container'>
-                        <LoginForm
-                        />
-                    </div>
-
-                </div>
-            );
-        }
-    }
+    </Router>
+  );
 }
 
-export default observer(App);
+export default App;

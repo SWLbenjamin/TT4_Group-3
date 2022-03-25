@@ -1,7 +1,10 @@
 import React from 'react';
 import InputField from './InputField';
 import SubmitButton from './SubmitButton';
+import SignUpButton from './SignUpButton'
 import UserStore from '../../stores/UserStore';
+import SignUpPage from './SignUpPage';
+import { Link } from 'react-router-dom'
 import '../../tut.css';
 
 class LoginForm extends React.Component {
@@ -99,6 +102,9 @@ class LoginForm extends React.Component {
                     disabled={this.state.buttonDisabled}
                     onClick={ () => this.doLogin() }
                 />
+                <div>
+                <a href="/SignUpPage"><SignUpButton color='red' text='Sign Up'/></a>
+                </div>
 
             </div>
         );
