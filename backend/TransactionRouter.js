@@ -10,13 +10,17 @@ class TransactionRouter {
     }
 
     getBalance(app, db) {
-        app.get('/', (req, res) => {
+        app.get('/:id', (req, res) => {
           customerID = req.params.id;
-          db.query("SELECT balance FROM customers WHERE CustomerId =" + customerID, function (err, result, fields) {
+          db.query("SELECT balance FROM customer WHERE CustomerId =" + customerID, function (err, result, fields) {
             if (err) throw err;
             res.send(result);
         });
-      }}
+      }
+    );
+      }
+
+
 
     getLoan(app, db) {
         app.get('/getLoan', (req, res) => {
@@ -27,7 +31,17 @@ class TransactionRouter {
       }
 
     createLoan(app, db) {
-        app.post('/', (req, res) => {}   )
+        app.post('/', (req, res) => {
+          data = {loan_amount = req.body.loan, customerId = req.body.id};
+          db.query(`INSERT INTO loan (loan_amount) VALUES ('${data.loan_amount}')`, function (err,results){
+            if (err) throw error;
+            res.send('Successfully added loan!');
+          });
+          db.query(`INSERT INTO customerloan (CustomerId, LoanId) VALUES ('${data.customerID}','${}')`, function (err,results){
+            if (err) throw error;
+            res.send('Successfully added loan!');
+          });
+        }   )
       }
 
     updatePaymentAndLoan(app, db) {
