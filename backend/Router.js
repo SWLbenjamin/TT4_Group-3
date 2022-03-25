@@ -29,7 +29,7 @@ class Router {
               });
             }
           });
-    });
+    })};
 
     login(app, db) {
         app.post('/login', (req, res) => {
