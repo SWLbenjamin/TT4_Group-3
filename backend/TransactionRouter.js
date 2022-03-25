@@ -5,8 +5,8 @@ class TransactionRouter {
     constructor(app, db) {
         this.getBalance(app, db);
         this.getLoan(app, db);
-        // this.createLoan(app, db);
-        // this.updatePaymentAndLoan(app, db);
+        this.createLoan(app, db);
+        this.updatePaymentAndLoan(app, db);
     }
 
     getBalance(app, db) {
@@ -14,7 +14,8 @@ class TransactionRouter {
             let customerID = req.body.id;
             db.query("SELECT balance FROM customer WHERE CustomerId =" + customerID, function (err, result, fields) {
                 if (err) throw err;
-                res.send(result);
+                console.log(result[0].balance);
+                res.json({success:true,balance:result[0].balance});
             });
         }
         );
@@ -25,46 +26,47 @@ class TransactionRouter {
     getLoan(app, db) {
         app.get('/getLoan', (req, res) => {
             let customerID = req.body.id;
-            db.query("SELECT SUM(loan_amount) FROM loan WHERE LoanId IN (SELECT LoanId FROM customerloan WHERE CustomerId=" + customerID + ")", function (err, result, fields) {
+            db.query("SELECT SUM(loan_amount) as sum_loan FROM loan WHERE LoanId IN (SELECT LoanId FROM customerloan WHERE CustomerId=" + customerID + ")", function (err, result, fields) {
                 if (err) throw err;
-                res.send(result);
+                res.json({success:true,loan_amount:result[0].sum_loan});
             });
         }
         );
     }
 
-    // createLoan(app, db) {
-    //     app.post('/', (req, res) => {
-    //       data = {loan_amount : req.body.loan, customerId : req.body.id};
-    //       let loanID = 0;
-    //       db.query(`INSERT INTO loan (loan_amount) VALUES ('${data.loan_amount}')`, function (err,results){
-    //         if (err) throw error;
-    //         res.send('Successfully added loan!');
-    //       });
-    //       db.query('SELECT LAST_INSERT_ID()', function (err,results){
-    //         if (err) throw error;
-    //         loanID = results;
-    //       });
-    //       db.query(`INSERT INTO customerloan (CustomerId, LoanId) VALUES ('${data.customerID}','${loanID}')`, function (err,results){
-    //         if (err) throw error;
-    //         res.send('Successfully added loan!');
-    //       });
-    //     }   )
-    //   }
 
-    // updatePaymentAndLoan(app, db) {
-    //     app.post('/updatePaymentAndLoan', (req, res) => {
-    //       data = {payment_amount = req.body.payment, loanId = req.body.id};
-    //       db.query(`UPDATE loan SET loan_amount = loan_amount - ('${data.payment_amount}') WHERE loanId = ('${data.loanId}')`, function (err,results){
-    //         if (err) throw error;
-    //         res.send('Successfully paid!');
-    //       });
-    //       db.query(`INSERT INTO payment (LoanId, payment_date, payment_amount) VALUES ('${data.loanId}','2022-03-25','${data.payment_amount}')`, function (err,results){
-    //         if (err) throw error;
-    //         res.send('Successfully paid!');
-    //       });
-    //     }  );
-    //   }
+    createLoan(app, db) {
+        app.post('/createLoan', (req, res) => {
+            let loan_amount = req.body.loan;
+            let customerId = req.body.id;
+
+            db.query(`INSERT INTO loan (loan_amount) VALUES ('${loan_amount}');SELECT LAST_INSERT_ID() as ID`, function (err, results) {
+                let resultString = JSON.stringify(results[1]);
+                let resJSON = JSON.parse(resultString);
+                let loanID = resJSON[0].ID;
+                db.query(`INSERT INTO customerloan (CustomerId, LoanId) VALUES ('${customerId}','${loanID}')`, function (err, results) {
+                    if (err) throw err;
+                    res.json({success:true,msg:'Successfully added loan into customerloan!'});
+                });
+                if (err) throw err;
+            });
+        })
+    }
+
+    updatePaymentAndLoan(app, db) {
+        app.post('/updatePaymentAndLoan', (req, res) => {
+            let payment_amount = req.body.payment;
+            let loanId = req.body.id;
+            const today = new Date().toLocaleDateString('en-us', {year:"numeric", month:"numeric", day:"numeric"});
+            db.query(`UPDATE loan SET loan_amount = loan_amount - ('${payment_amount}') WHERE loanId = ('${loanId}')`, function (err, results) {
+                if (err) throw error;
+            });
+            db.query(`INSERT INTO payment (LoanId, payment_date, payment_amount) VALUES ('${loanId}','${today}','${payment_amount}')`, function (err, results) {
+                if (err) throw error;
+                res.send('Successfully paid!');
+            });
+        });
+    }
 }
 
 
