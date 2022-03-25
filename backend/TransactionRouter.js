@@ -34,9 +34,9 @@ class TransactionRouter {
         );
     }
 
+
     createLoan(app, db) {
         app.post('/createLoan', (req, res) => {
-
             let loan_amount = req.body.loan;
             let customerId = req.body.id;
 
