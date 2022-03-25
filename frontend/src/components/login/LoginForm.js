@@ -103,8 +103,7 @@ class LoginForm extends React.Component {
                     onClick={ () => this.doLogin() }
                 />
                 <div>
-                {/* <SignUpButton color='green' text='Sign Up' component={Link} to="/SignUpPage"/> */}
-                <a href="/SignUpPage"><SignUpButton color='green' text='Sign Up'/></a>
+                <a href="/SignUpPage"><SignUpButton color='red' text='Sign Up'/></a>
                 </div>
 
             </div>

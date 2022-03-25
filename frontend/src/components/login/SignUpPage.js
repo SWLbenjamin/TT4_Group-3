@@ -1,5 +1,6 @@
 import React from 'react'
 import {useState} from 'react'
+import '../../tut.css';
 
 const SignUpPage = ({onAdd}) => {
 
@@ -43,34 +44,36 @@ const SignUpPage = ({onAdd}) => {
 
     }
 
+
   return (
-    <form className='add-form' onSubmit={onSubmit}>
+    <form className='SignUpForm' onSubmit={onSubmit}>
+        <h1>Registration Page</h1>
             <div className='form-control'>
-                <label>Username</label>
+                <label>Username</label><div></div>
                 <input type='text' placeholder ='Type Username here' 
                 value={username} onChange={(e) =>
                 setUsername(e.target.value)}/>
             </div>
             <div className='form-control'>
-                <label>Password</label>
+                <label>Password</label><div></div>
                 <input type='text' placeholder ='Type Password here'
                 value={password} onChange={(e) =>
                 setPassword(e.target.value)}/>
             </div>
             <div className='form-control'>
-                <label>Name</label>
+                <label>Name</label><div></div>
                 <input type='text' placeholder ='Type Name here'
                 value={name} onChange={(e) =>
                 setName(e.target.value)}/>
             </div>
             <div className='form-control'>
-                <label>Phone Number</label>
+                <label>Phone Number</label><div></div>
                 <input type='text' placeholder ='Type Phone Number here'
                 value={phone} onChange={(e) =>
                 setPhone(e.target.value)}/>
             </div>
             <div className='form-control'>
-                <label>Address</label>
+                <label>Address</label><div></div>
                 <input type='text' placeholder ='Type Address here'
                 value={address} onChange={(e) =>
                 setAddress(e.target.value)}/>
@@ -83,6 +86,7 @@ const SignUpPage = ({onAdd}) => {
 
         </form>
   )
+
 }
 
 export default SignUpPage
