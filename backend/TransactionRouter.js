@@ -10,12 +10,12 @@ class TransactionRouter {
     }
 
     getBalance(app, db) {
-        app.get('/', (req, res) => {
+        app.get('/:id', (req, res) => {
           customerID = req.params.id;
           db.query("SELECT balance FROM customers WHERE CustomerId =" + customerID, function (err, result, fields) {
             if (err) throw err;
             res.send(result);
-        })
+        });
       }
 
     getLoan(app, db) {
