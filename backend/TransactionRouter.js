@@ -15,7 +15,7 @@ class TransactionRouter {
             db.query("SELECT balance FROM customer WHERE CustomerId =" + customerID, function (err, result, fields) {
                 if (err) throw err;
                 console.log(result[0].balance);
-                res.send(result);
+                res.json({success:true,balance:result[0].balance);
             });
         }
         );
@@ -28,7 +28,7 @@ class TransactionRouter {
             let customerID = req.body.id;
             db.query("SELECT SUM(loan_amount) FROM loan WHERE LoanId IN (SELECT LoanId FROM customerloan WHERE CustomerId=" + customerID + ")", function (err, result, fields) {
                 if (err) throw err;
-                res.send(result);
+                res.json({success:true,loan_amount:result[0].'SUM(loan_amount)');
             });
         }
         );
@@ -46,7 +46,7 @@ class TransactionRouter {
                 let loanID = resJSON[0].ID;
                 db.query(`INSERT INTO customerloan (CustomerId, LoanId) VALUES ('${customerId}','${loanID}')`, function (err, results) {
                     if (err) throw err;
-                    res.send('Successfully added loan into customerloan!');
+                    res.json({success:true,msg:'Successfully added loan into customerloan!'});
                 });
                 if (err) throw err;
             });
