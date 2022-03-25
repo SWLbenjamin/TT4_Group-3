@@ -7,6 +7,9 @@ import SubmitButton from "./components/login/SubmitButton";
 import { LoginScreen } from './screens/LoginScreen';
 import Home from './screens/HomeScreen';
 import './tut.css';
+import JsonDataDisplay from './loans'
+import JsonDataDisplayPayment from './payments'
+
 
 class App extends React.Component {
 
@@ -134,7 +137,21 @@ class App extends React.Component {
                         <LoginForm
                         />
                     </div>
-
+                    <div class='container'>
+                        <div class='row'>
+                            <h3>Dear, xxxxxx, you have a balance of $200,000.</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col border">
+                                <p>Current Loan(s)</p>
+                                <JsonDataDisplay/>  
+                            </div>
+                            <div class="col border">
+                                <p>Loan History</p>
+                                <JsonDataDisplayPayment/>  
+                            </div>
+                        </div>
+                    </div>
                 </div>
             );
         }
