@@ -29,7 +29,7 @@ class Router {
                     db.query(`INSERT INTO user (username,password) VALUES ('${username}','${hashedPassword}')`, function (err, results) {
                         if (err) throw err;
                         // res.send('successfully registered');
-                    })};
+                    });
                     db.query(`INSERT INTO customer (customer_name, customer_phone, customer_address, balance) VALUES ('${name}','${phoneNum}','${address}', '0')`, function (err, results){
                         if (err) throw err;
                         res.send('successfully registered')
