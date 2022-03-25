@@ -47,7 +47,17 @@ class TransactionRouter {
       }
 
     updatePaymentAndLoan(app, db) {
-        app.post('/', (req, res) => {}   )
+        app.post('/updatePaymentAndLoan', (req, res) => {
+          data = {payment_amount = req.body.payment, loanId = req.body.id};
+          db.query(`UPDATE loan SET loan_amount = loan_amount - ('${data.payment_amount}') WHERE loanId = ('${data.loanId}')`, function (err,results){
+            if (err) throw error;
+            res.send('Successfully paid!');
+          });
+          db.query(`INSERT INTO payment (LoanId, payment_date, payment_amount) VALUES ('${data.loanId}','2022-03-25','${data.payment_amount}')`, function (err,results){
+            if (err) throw error;
+            res.send('Successfully paid!');
+          });
+        }  );
       }
 }
 
