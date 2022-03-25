@@ -27,8 +27,10 @@ class TransactionRouter {
           db.query("SELECT SUM(loan_amount) FROM loan WHERE LoanId IN (SELECT LoanId FROM customerloan WHERE CustomerId=" + customerID +")" , function (err, result, fields) {
             if (err) throw err;
             res.send(result);
-        })
+        });
       }
+      );
+    }
 
     createLoan(app, db) {
         app.post('/', (req, res) => {
